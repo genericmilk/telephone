@@ -1,7 +1,7 @@
 {
-    "name": "genericmilk/cooker",
-    "description": "Plugin to the Cooker Engine! Easy site building by Genericmilk",
-    "keywords": ["laravel", "cooker", "resources", "less", "javascript"],
+    "name": "genericmilk/telephone",
+    "description": "Make simple API calls from Laravel!",
+    "keywords": ["laravel", "api", "curl", "get", "post"],
     "license": "MIT",
     "authors": [
         {
@@ -10,12 +10,11 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "oyejorge/less.php": "v1.7.0.14"
+        "php": ">=7.0"
     },
     "autoload": {
         "psr-4": {
-            "Genericmilk\\Cooker\\": "src/"
+            "Genericmilk\\Telephone\\": "src/"
         }
     },
     "minimum-stability": "dev",
@@ -26,7 +25,7 @@
         },
         "laravel": {
             "providers": [
-                "Genericmilk\\Cooker\\ServiceProvider"
+                "Genericmilk\\Telephone\\ServiceProvider"
             ]
         }
     },

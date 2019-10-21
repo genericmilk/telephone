@@ -1,6 +1,6 @@
 <?php
 /*
- * Resource Cooker
+ * Telephone
  *
  * (c) Peter Day <peterday.main@gmail.com>
  *
@@ -9,11 +9,6 @@
  */
 return [
 
-    /*
-        The namespace to use in the javascript. By default the namespace is "App" and
-        subsequently App.Boot(); will run on the cooked javascript on document ready
-    */
-    
     'namespace' => 'App',
     
 ];

@@ -1,19 +1,17 @@
 <?php
 
-namespace Genericmilk\Cooker;
+namespace Genericmilk\Telephone;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class Cooker extends Controller
+class Telephone extends Controller
 {
-    public static function Page($Url){
+    public static function get($Url,$Headers = []){
         // throw new \Exception('No Element Configuration Set');
         return (object)[
-            'hello' => 'moto',
-            'url' => $Url,
-            'config' => config('element.api')
+            'telephone' => 'ringring'
         ];
     }
 }

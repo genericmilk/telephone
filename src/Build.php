@@ -1,6 +1,6 @@
 <?php
 
-namespace Genericmilk\Cooker;
+namespace Genericmilk\Telephone;
 
 use Illuminate\Console\Command;
 
@@ -90,7 +90,7 @@ class Build extends Command
             return;
         }
 
-        $this->info('🍔 Cooking '.config('cooker.namespace').'.js');
+        $this->info('🍔 Cooking '.config('telephone.namespace').'.js');
         
 		$JsObject = json_decode(file_get_contents(base_path().'/resources/js/build.json'));
 		$rJS = '';
@@ -98,7 +98,7 @@ class Build extends Command
         foreach($JsObject as $File){
             $rJS .= file_get_contents(base_path().'/resources/js/'.$File);
         }
-		$rJS .= config('cooker.namespace').'.Boot();'; // Boot the script        
+		$rJS .= config('telephone.namespace').'.Boot();'; // Boot the script        
 		
 		if(!env('APP_DEBUG')){
 			$rJS = preg_replace('/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\')\/\/.*))/', '', $rJS); // remove js comments

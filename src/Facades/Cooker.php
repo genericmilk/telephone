@@ -1,13 +1,13 @@
 <?php
 
 declare(strict_types=1);
-namespace Genericmilk\Cooker\Facades;
+namespace Genericmilk\Telephone\Facades;
 use Illuminate\Support\Facades\Facade;
 
-class Cooker extends Facade
+class Telephone extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'Cooker';
+        return 'Telephone';
     }
 }
