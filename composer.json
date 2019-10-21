@@ -1,0 +1,36 @@
+{
+    "name": "genericmilk/cooker",
+    "description": "Plugin to the Cooker Engine! Easy site building by Genericmilk",
+    "keywords": ["laravel", "cooker", "resources", "less", "javascript"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter Day",
+            "email": "peterday.main@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "oyejorge/less.php": "v1.7.0.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Genericmilk\\Cooker\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.2-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Genericmilk\\Cooker\\ServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "laravel/framework": "5.5.x"
+    }
+}
