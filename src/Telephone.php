@@ -55,7 +55,7 @@ class Telephone extends Controller
         
         curl_close($curl);
         
-        if ($err) {
+        if (!$err) {
             $response = json_decode($response);
             $response = json_decode(json_encode($response)); // force convert to php object
             return $response;
