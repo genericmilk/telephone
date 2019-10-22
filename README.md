@@ -23,7 +23,7 @@ Now that you've added Telephone to your controller, you can use it to build requ
 ### Creating a GET request without authorisation using Telephone
 Get requests using Telephone are made up of two parts, The `url` and any `headers` you want to use. If you have no header information you need to pass such as bearer tokens, You can make a request as such
 ```
-$RingRing = Telephone::get('https://jsonplaceholder.typicode.com/photos/1');
+$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')->get();
 ```
 The value of `$RingRing` will be a PHP Object of the response the api delivered. You can then traverse it as such;
 ```
@@ -37,18 +37,31 @@ foreach($RingRing as $Item){
 ```
 
 ### Creating a GET request with authorisation using Telephone
-If you need to pass authorisation into your request, for example by means of a `Bearer Token` you can do so by adding it to the header array like so
+If you need to pass authorisation into your request, for example by means of a `Bearer Token` you can do so by adding it to the chain like so
 ```
-$RingRing = Telephone::get('https://jsonplaceholder.typicode.com/photos/1',['Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx']);
+$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')
+->bearer('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+->get();
 ```
-You can extend the header array as you need using this method. Any data will be sent along with the GET request
+
+### Extending headers
+If you need to add more to the headers array you can do so by adding the following
+```
+$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')
+->headers([
+  'Origin: https://status.quuu.co',
+  'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
+])
+->get();
+```
+You can extend the header array as you need using this method. Any data will be sent along with the request
 
 ### Creating a POST request using Telephone
 Creating a POST request is pretty much similar to how GET requests are made, with the key difference there is space for another array which will be sent as `form-data` in the post request if you need.
 
 You can use the request like so;
 ```
-$RingRing = Telephone::post('https://jsonplaceholder.typicode.com/photos/1',['Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'],[
+$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')->bearer('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')->body([
   'Key' => 'Value',
   'AnotherKey' => 'AnotherValue'
 ]);
@@ -56,7 +69,7 @@ $RingRing = Telephone::post('https://jsonplaceholder.typicode.com/photos/1',['Au
 
 You can scale up or down this request as you see fit. If you do not provide an array (i.e. a POST request without form-data) simply don't include it in your request like so;
 ```
-$RingRing = Telephone::post('https://jsonplaceholder.typicode.com/photos/1',['Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx']);
+$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')->bearer('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')->post();
 ```
 Telephone will not send any data if no array exists by default.
 
