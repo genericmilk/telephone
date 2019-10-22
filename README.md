@@ -61,15 +61,20 @@ Creating a POST request is pretty much similar to how GET requests are made, wit
 
 You can use the request like so;
 ```
-$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')->bearer('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')->body([
+$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')
+->bearer('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+->body([
   'Key' => 'Value',
   'AnotherKey' => 'AnotherValue'
-]);
+])
+->post();
 ```
 
 You can scale up or down this request as you see fit. If you do not provide an array (i.e. a POST request without form-data) simply don't include it in your request like so;
 ```
-$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')->bearer('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')->post();
+$RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')
+->bearer('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+->post();
 ```
 Telephone will not send any data if no array exists by default.
 
