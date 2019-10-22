@@ -49,7 +49,7 @@ If you need to add more to the headers array you can do so by adding the followi
 ```
 $RingRing = Telephone::call('https://jsonplaceholder.typicode.com/photos/1')
 ->headers([
-  'Origin: https://status.quuu.co',
+  'Origin: https://nullstack.co.uk',
   'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
 ])
 ->get();
