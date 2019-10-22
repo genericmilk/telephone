@@ -11,22 +11,24 @@ class Telephone extends Controller
 
     protected static $url = null;
     protected static $headers = [];
-    protected static $body = [];
+    public $body = [];
 
     public static function call($url){
         Telephone::$url = $url; // Add url to top
         $o = new self;
-
         return $o;
     }
 
-    public function headers($header){
-        Telephone::$headers = $headers; // Add headers to top
-        return $this;
+    public static function headers($header){
+        Telephone::$headers = $header; // Add headers to top
+        $o = new self;
+        return $o;
+
     }    
-    public function body($body){
+    public static function body($body){
         Telephone::$body = $body; // Add body to top
-        return $this;
+        $o = new self;
+        return $o;
     }
     
 
