@@ -11,7 +11,8 @@ class Telephone extends Controller
 
     protected static $url = null;
     protected static $headers = [];
-    public $body = [];
+    protected static $body = [];
+    
 
     public static function call($url){
         Telephone::$url = $url; // Add url to top
@@ -27,6 +28,11 @@ class Telephone extends Controller
     }    
     public static function body($body){
         Telephone::$body = $body; // Add body to top
+        $o = new self;
+        return $o;
+    }
+    public static function bearer($bearer){
+        Telephone::$headers[] = 'Authorization: Bearer '.$bearer; // Add body to top
         $o = new self;
         return $o;
     }
