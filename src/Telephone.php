@@ -8,18 +8,35 @@ use App\Http\Controllers\Controller;
 
 class Telephone extends Controller
 {
-    public static function get($Url,$Headers = []){
+
+    protected $url = null;
+    protected $headers = [];
+    protected $body = [];
+
+    public static function call($url){
+        $this->url = $url; // Add url to top
+    }
+
+    public static function headers($header){
+        $this->headers = $headers; // Add headers to top
+    }    
+    public static function body($body){
+        $this->body = $body; // Add body to top
+    }
+    
+
+    public static function get(){
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-        CURLOPT_URL => $Url,
+        CURLOPT_URL => $this->url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => $Headers
+        CURLOPT_HTTPHEADER => $this->headers
         ));
 
         $response = curl_exec($curl);
@@ -35,19 +52,19 @@ class Telephone extends Controller
             throw new \Exception('Telephone dropped call; '.$err);
         }
     }
-    public static function post($Url,$Headers = [],$Body = []){
+    public static function post(){
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => $Url,
+          CURLOPT_URL => $this->url,
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
           CURLOPT_TIMEOUT => 30,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => $Body,
-          CURLOPT_HTTPHEADER => $Headers,
+          CURLOPT_POSTFIELDS => $this->body,
+          CURLOPT_HTTPHEADER => $this->headers,
         ));
         
         $response = curl_exec($curl);
