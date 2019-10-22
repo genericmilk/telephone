@@ -9,9 +9,9 @@ use App\Http\Controllers\Controller;
 class Telephone extends Controller
 {
 
-    protected $url = null;
-    protected $headers = [];
-    protected $body = [];
+    protected static $url = null;
+    protected static $headers = [];
+    protected static $body = [];
 
     public static function call($url){
         $this->url = $url; // Add url to top
