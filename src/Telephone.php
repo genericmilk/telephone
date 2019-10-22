@@ -14,14 +14,19 @@ class Telephone extends Controller
     protected static $body = [];
 
     public static function call($url){
-        $this->url = $url; // Add url to top
+        Telephone::$url = $url; // Add url to top
+        $o = new self;
+
+        return $o;
     }
 
-    public static function headers($header){
-        $this->headers = $headers; // Add headers to top
+    public function headers($header){
+        Telephone::$headers = $headers; // Add headers to top
+        return $this;
     }    
-    public static function body($body){
-        $this->body = $body; // Add body to top
+    public function body($body){
+        Telephone::$body = $body; // Add body to top
+        return $this;
     }
     
 
@@ -29,14 +34,14 @@ class Telephone extends Controller
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-        CURLOPT_URL => $this->url,
+        CURLOPT_URL => Telephone::$url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => $this->headers
+        CURLOPT_HTTPHEADER => Telephone::$headers
         ));
 
         $response = curl_exec($curl);
@@ -52,19 +57,19 @@ class Telephone extends Controller
             throw new \Exception('Telephone dropped call; '.$err);
         }
     }
-    public static function post(){
+    public function post(){
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => $this->url,
+          CURLOPT_URL => Telephone::$url,
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => "",
           CURLOPT_MAXREDIRS => 10,
           CURLOPT_TIMEOUT => 30,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => $this->body,
-          CURLOPT_HTTPHEADER => $this->headers,
+          CURLOPT_POSTFIELDS => Telephone::$body,
+          CURLOPT_HTTPHEADER => Telephone::$headers,
         ));
         
         $response = curl_exec($curl);
