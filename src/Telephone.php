@@ -5,6 +5,7 @@ namespace Genericmilk\Telephone;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 
 class Telephone extends Controller
 {
@@ -32,10 +33,17 @@ class Telephone extends Controller
         return $o;
     }
     public static function bearer($bearer){
-        Telephone::$headers[] = 'Authorization: Bearer '.$bearer; // Add body to top
+        Telephone::$headers[] = 'Authorization: Bearer '.$bearer;
         $o = new self;
         return $o;
     }
+    public static function auth($user,$pass){
+        $combined = base64_encode($user.':'.$pass);
+        Telephone::$headers[] = 'Authorization: Basic '.$combined;
+        $o = new self;
+        return $o;
+    }
+    
     
 
     public static function get(){
@@ -60,7 +68,7 @@ class Telephone extends Controller
         if (!$err) {
             $response = json_decode($response);
             $response = json_decode(json_encode($response)); // force convert to php object
-            return $response;
+            return collect($response);
         } else {
             throw new \Exception('Telephone dropped call; '.$err);
         }
@@ -88,7 +96,7 @@ class Telephone extends Controller
         if (!$err) {
             $response = json_decode($response);
             $response = json_decode(json_encode($response)); // force convert to php object
-            return $response;
+            return collect($response);
         } else {
             throw new \Exception('Telephone dropped call; '.$err);
         }
