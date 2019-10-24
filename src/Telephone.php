@@ -68,7 +68,7 @@ class Telephone extends Controller
         if (!$err) {
             $response = json_decode($response);
             $response = json_decode(json_encode($response)); // force convert to php object
-            return collect($response);
+            return $response;
         } else {
             throw new \Exception('Telephone dropped call; '.$err);
         }
@@ -96,7 +96,7 @@ class Telephone extends Controller
         if (!$err) {
             $response = json_decode($response);
             $response = json_decode(json_encode($response)); // force convert to php object
-            return collect($response);
+            return $response;
         } else {
             throw new \Exception('Telephone dropped call; '.$err);
         }
