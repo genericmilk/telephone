@@ -73,6 +73,20 @@ class Telephone extends Controller
             throw new \Exception('Telephone dropped call; '.$err);
         }
     }
+
+    private function build_post_fields( $data,$existingKeys='',&$returnArray=[]){
+        if(($data instanceof CURLFile) or !(is_array($data) or is_object($data))){
+            $returnArray[$existingKeys]=$data;
+            return $returnArray;
+        }
+        else{
+            foreach ($data as $key => $item) {
+                $this->build_post_fields($item,$existingKeys?$existingKeys."[$key]":$key,$returnArray);
+            }
+            return $returnArray;
+        }
+    }
+
     public function post(){
         $curl = curl_init();
 
@@ -84,7 +98,7 @@ class Telephone extends Controller
           CURLOPT_TIMEOUT => 30,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => Telephone::$body,
+          CURLOPT_POSTFIELDS => $this->build_post_fields(Telephone::$body),
           CURLOPT_HTTPHEADER => Telephone::$headers,
         ));
         
