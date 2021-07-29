@@ -1,3 +1,5 @@
+* 👴 This repo is archived and is no longer maintained as Laravel has run out a first party alternative that is way better! Switch to https://laravel.com/docs/8.x/requests to get started *
+
 # 📱 Telephone
 ## By Genericmilk
 
